@@ -1,7 +1,7 @@
-import logo from "./logo.svg";
+// import logo from "./logo.svg";
 import "./App.css";
 import ExpenseForm from "./ExpenseForm";
-import ExpenseTable from "./ExpenseTable";
+import React from "react";
 
 function App() {
   return (
