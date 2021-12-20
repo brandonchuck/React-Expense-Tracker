@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import ReactDOM from "react-dom";
 import ExpenseTable from "./ExpenseTable";
 
 /*
@@ -15,38 +14,70 @@ import ExpenseTable from "./ExpenseTable";
 
 export default function ExpenseForm() {
   const [expense, setExpense] = useState({
-    currency: null,
-    date: null,
-    description: null,
-    location: null,
-    amount: null,
+    currency: "",
+    date: "",
+    description: "",
+    location: "",
+    amount: "",
   });
 
-  // this will automatically bind
   const handleSubmit = (e) => {
     e.preventDefault();
-    let form = document.getElementsByClassName("expense-form");
 
-    expense.setExpense({
-      currency: setExpense({ ...expense, currency }),
-    });
+    const form = document.querySelector(".expense-form");
+    form.reset();
   };
 
   return (
     <div>
       <div className="form-container">
         <form className="expense-form">
-          Expense:
-          <select>
+          <label htmlFor="description">Description: </label>
+          <input
+            onChange={(e) =>
+              setExpense({ ...expense, description: e.target.value })
+            }
+            value={expense.description}
+            id="description"
+          ></input>
+          <br />
+
+          <label htmlFor="currency">Currency: </label>
+          <select
+            onChange={(e) =>
+              setExpense({ ...expense, currency: e.target.value })
+            }
+            value={expense.currency}
+            id="currency"
+          >
             <option>Cash</option>
             <option>Credit Card</option>
             <option>Cryptocurrency</option>
             <option>Check</option>
           </select>
-          Location: <input></input>
+          <br />
+
+          <label htmlFor="location">Location: </label>
+          <input
+            onChange={(e) =>
+              setExpense({ ...expense, location: e.target.value })
+            }
+            value={expense.location}
+            id="location"
+          ></input>
+          <br />
+
+          <label htmlFor="amount">Amount: </label>
+          <input
+            onChange={(e) => setExpense({ ...expense, amount: e.target.value })}
+            value={expense.amount}
+            id="amount"
+          ></input>
+          <br />
+
           <button onSubmit={handleSubmit}>Add Expense</button>
         </form>
-        <ExpenseTable expense={this.state} />
+        <ExpenseTable expense={expense} />
       </div>
     </div>
   );

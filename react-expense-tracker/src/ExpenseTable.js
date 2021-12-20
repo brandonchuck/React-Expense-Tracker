@@ -6,6 +6,7 @@ import ReactDOM from "react-dom";
 // Method for creating a delete button and appending it to row
 
 export default function ExpenseTable(props) {
-  console.log(this.props.expense);
-  return null;
+  //   console.log(props.expense);
+
+  return <h1>hello!</h1>;
 }
