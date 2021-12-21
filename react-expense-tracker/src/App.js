@@ -4,10 +4,18 @@ import ExpenseForm from "./ExpenseForm";
 import React, { useState } from "react";
 
 function App() {
+  const [expense, setExpense] = useState({
+    currency: "",
+    date: "",
+    description: "",
+    location: "",
+    amount: "",
+  });
+
   return (
     <div className="App">
       <h1>React Expense Tracker</h1>
-      <ExpenseForm />
+      <ExpenseForm expense={expense} setExpense={setExpense} />
     </div>
   );
 }

@@ -1,17 +1,13 @@
-import React, { useState } from "react";
 import ExpenseTable from "./ExpenseTable";
 
 export default function ExpenseForm(props) {
-  const [expense, setExpense] = useState({
-    currency: "",
-    date: "",
-    description: "",
-    location: "",
-    amount: "",
-  });
+  let expense = props.expense;
 
   const handleChange = (e) => {
-    setExpense({ ...expense, [e.target.name]: e.target.value });
+    props.setExpense({
+      ...expense,
+      [e.target.name]: e.target.value,
+    });
   };
 
   const handleSubmit = (e) => {
@@ -75,11 +71,9 @@ export default function ExpenseForm(props) {
             id="amount"
           />
           <br />
-          <button type="submit" onSubmit={(e) => handleSubmit(e)}>
-            Add Expense
-          </button>
+          <button type="submit">Add Expense</button>
         </form>
-        <ExpenseTable expense={expense} />
+        <ExpenseTable />
       </div>
     </div>
   );

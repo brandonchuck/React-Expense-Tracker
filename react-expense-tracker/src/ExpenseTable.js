@@ -49,7 +49,7 @@ function addExpenseRow(props) {
 
 export default function ExpenseTable(props) {
   console.log(props.expense);
-
+  let expense = props.expense;
   return (
     <div>
       <table className="expense-table">
@@ -63,9 +63,9 @@ export default function ExpenseTable(props) {
           </tr>
         </thead>
         <tbody id="table-body">
-          {/* <tr>
-            <td>1</td>
-            <td>2</td>
+          <tr>
+            <td>{expense.currency}</td>
+            <td>{expense.location}</td>
             <td>3</td>
             <td>4</td>
             <td>5</td>
@@ -76,7 +76,7 @@ export default function ExpenseTable(props) {
             <td>8</td>
             <td>9</td>
             <td>10</td>
-          </tr> */}
+          </tr>
         </tbody>
       </table>
     </div>
