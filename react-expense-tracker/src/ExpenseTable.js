@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 
 const ExpenseTable = ({ expenseList }) => {
   return (
@@ -15,17 +15,15 @@ const ExpenseTable = ({ expenseList }) => {
         </thead>
         <tbody id="table-body">
           <tr>
-            {expenseList.map((expense, idx) => {
-              return (
-                <>
-                  <td key={idx}>{expense.currency}</td>
-                  {/* <td>{expense.date}</td>
-                  <td>{expense.description}</td>
-                  <td>{expense.location}</td>
-                  <td>{expense.amount}</td> */}
-                </>
-              );
-            })}
+            {expenseList.map((expense) => (
+              <Fragment>
+                <td>{expense.currency}</td>
+                <td>{expense.date}</td>
+                <td>{expense.description}</td>
+                <td>{expense.location}</td>
+                <td>{expense.amount}</td>
+              </Fragment>
+            ))}
           </tr>
         </tbody>
       </table>

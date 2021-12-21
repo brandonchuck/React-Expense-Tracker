@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 const ExpenseForm = ({ setExpenseList }) => {
-  const id = Math.random() * 10;
   const [currency, setCurrency] = useState("");
   const [date, setDate] = useState("");
   const [description, setDescription] = useState("");
@@ -9,7 +8,6 @@ const ExpenseForm = ({ setExpenseList }) => {
   const [amount, setAmount] = useState("");
 
   const expense = {
-    id: id,
     currency: "",
     date: "",
     description: "",
@@ -25,7 +23,7 @@ const ExpenseForm = ({ setExpenseList }) => {
   return (
     <div>
       <div className="form-container">
-        <form className="expense-form" onSubmit={() => handleSubmit()}>
+        <form className="expense-form" onSubmit={handleSubmit}>
           <label htmlFor="currency">Currency: </label>
           <select
             onChange={(e) => setCurrency(e.target.value)}
