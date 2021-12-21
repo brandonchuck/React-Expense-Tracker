@@ -1,16 +1,6 @@
 import React from "react";
 
 const ExpenseTable = ({ expenseList }) => {
-
-
-  function displayRows(){
-    expenseList.map(() => {
-      return (
-
-      )
-    })
-    
-
   return (
     <div>
       <table className="expense-table">
