@@ -1,5 +1,6 @@
 import React from "react";
-import TableRow from "./TableRow";
+// import TableRow from "./TableRow";
+import { Fragment } from "react";
 
 const ExpenseTable = ({ expenseList }) => {
   return (
@@ -16,8 +17,16 @@ const ExpenseTable = ({ expenseList }) => {
         </thead>
         <tbody id="table-body">
           <tr>
-            {expenseList.map((expense) => {
-              return <TableRow expense={expense} />;
+            {expenseList.map((expense, idx) => {
+              return (
+                <Fragment key={idx}>
+                  <td>{expense.currency}</td>
+                  <td>{expense.date}</td>
+                  <td>{expense.description}</td>
+                  <td>{expense.location}</td>
+                  <td>{expense.amount}</td>
+                </Fragment>
+              );
             })}
           </tr>
         </tbody>

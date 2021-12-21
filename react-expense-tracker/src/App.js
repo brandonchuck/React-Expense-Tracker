@@ -4,7 +4,7 @@ import ExpenseTable from "./ExpenseTable";
 import React, { useState } from "react";
 
 function App() {
-  const [expenseList, setExpenseList] = useState([]); // an array of exense objects
+  const [expenseList, setExpenseList] = useState([]);
   const [currency, setCurrency] = useState("");
   const [date, setDate] = useState("");
   const [description, setDescription] = useState("");
@@ -19,8 +19,10 @@ function App() {
     amount: "",
   };
 
-  const handleSubmit = () => {
-    setExpenseList(expense);
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    setExpenseList([expense]);
+    console.log(expenseList);
   };
 
   return (
@@ -28,7 +30,7 @@ function App() {
       <h1>React Expense Tracker</h1>
       <div>
         <div className="form-container">
-          <form className="expense-form" onSubmit={handleSubmit}>
+          <form className="expense-form" onSubmit={handleFormSubmit}>
             <label htmlFor="currency">Currency: </label>
             <select
               onChange={(e) => setCurrency(e.target.value)}
