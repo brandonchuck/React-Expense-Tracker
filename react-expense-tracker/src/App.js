@@ -11,17 +11,20 @@ function App() {
   const [location, setLocation] = useState("");
   const [amount, setAmount] = useState("");
 
+  // set expense object onSubmit
   const expense = {
-    currency: "",
-    date: "",
-    description: "",
-    location: "",
-    amount: "",
+    id: Math.floor(Math.random() * 1000),
+    currency: currency,
+    date: date,
+    description: description,
+    location: location,
+    amount: amount,
   };
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    setExpenseList([expense]);
+    document.querySelector(".expense-form").reset();
+    setExpenseList([...expenseList, expense]);
     console.log(expenseList);
   };
 
@@ -38,6 +41,7 @@ function App() {
               type="text"
               name="currency"
               id="currency"
+              required
             >
               <option value="cash">Cash</option>
               <option value="credit">Credit Card</option>
@@ -53,6 +57,7 @@ function App() {
               name="date"
               type="date"
               id="date"
+              required
             />
             <br />
 
@@ -63,6 +68,7 @@ function App() {
               type="text"
               name="description"
               id="description"
+              required
             />
             <br />
 
@@ -73,6 +79,7 @@ function App() {
               name="location"
               type="text"
               id="location"
+              required
             />
             <br />
 
@@ -84,6 +91,7 @@ function App() {
               type="number"
               step="0.2"
               id="amount"
+              required
             />
             <br />
             <input value="Add Expense" type="submit" />
