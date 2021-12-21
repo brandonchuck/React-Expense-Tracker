@@ -1,4 +1,5 @@
 import React from "react";
+import TableRow from "./TableRow";
 
 const ExpenseTable = ({ expenseList }) => {
   return (
@@ -16,15 +17,7 @@ const ExpenseTable = ({ expenseList }) => {
         <tbody id="table-body">
           <tr>
             {expenseList.map((expense) => {
-              return (
-                <>
-                  <td>{expense.currency}</td>
-                  {/* <td>{expense.date}</td>
-                  <td>{expense.description}</td>
-                  <td>{expense.location}</td>
-                  <td>{expense.amount}</td> */}
-                </>
-              );
+              return <TableRow expense={expense} />;
             })}
           </tr>
         </tbody>
