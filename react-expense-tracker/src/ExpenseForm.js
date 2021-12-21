@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ExpenseTable from "./ExpenseTable";
 
-export default function ExpenseForm() {
+export default function ExpenseForm(props) {
   const [expense, setExpense] = useState({
     currency: "",
     date: "",
@@ -10,14 +10,11 @@ export default function ExpenseForm() {
     amount: "",
   });
 
-  // This function DOES NOT WORK for onChange? Example: currency onChange? Why?
   const handleChange = (e) => {
-    setExpense(() => ({ ...expense, [e.target.name]: e.target.value }));
+    setExpense({ ...expense, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-
     const form = document.querySelector(".expense-form");
     form.reset();
   };
@@ -26,15 +23,13 @@ export default function ExpenseForm() {
   return (
     <div>
       <div className="form-container">
-        <form className="expense-form">
+        <form className="expense-form" onSubmit={(e) => handleSubmit(e)}>
           <label htmlFor="currency">Currency: </label>
           <select
-            onChange={(e) =>
-              setExpense({ ...expense, currency: e.target.value })
-            }
-            // onChange={handleChange}
+            onChange={(e) => handleChange(e)}
             value={expense.currency}
             type="text"
+            name="currency"
             id="currency"
           >
             <option value="cash">Cash</option>
@@ -43,49 +38,44 @@ export default function ExpenseForm() {
             <option value="check">Check</option>
           </select>
           <br />
-
           <label htmlFor="date">Date: </label>
           <input
-            onChange={(e) => setExpense({ ...expense, date: e.target.value })}
+            onChange={(e) => handleChange(e)}
             value={expense.date}
+            name="date"
             type="date"
             id="date"
           />
           <br />
-
           <label htmlFor="description">Description: </label>
           <input
-            onChange={(e) =>
-              setExpense({ ...expense, description: e.target.value })
-            }
+            onChange={(e) => handleChange(e)}
             value={expense.description}
             type="text"
+            name="description"
             id="description"
           />
           <br />
-
           <label htmlFor="location">Location: </label>
           <input
-            onChange={(e) =>
-              setExpense({ ...expense, location: e.target.value })
-            }
+            onChange={(e) => handleChange(e)}
             value={expense.location}
+            name="location"
             type="text"
             id="location"
           />
           <br />
-
           <label htmlFor="amount">Amount: </label>
           <input
-            onChange={(e) => setExpense({ ...expense, amount: e.target.value })}
+            onChange={(e) => handleChange(e)}
             value={expense.amount}
+            name="amount"
             type="number"
             step="0.2"
             id="amount"
           />
           <br />
-
-          <button type="submit" onSubmit={handleSubmit}>
+          <button type="submit" onSubmit={(e) => handleSubmit(e)}>
             Add Expense
           </button>
         </form>
