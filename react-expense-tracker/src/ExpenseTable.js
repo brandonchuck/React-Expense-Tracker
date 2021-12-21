@@ -1,5 +1,5 @@
 import React from "react";
-// import TableRow from "./TableRow";
+import DeleteButton from "./DeleteButton";
 
 const ExpenseTable = ({ expenseList }) => {
   return (
@@ -23,6 +23,7 @@ const ExpenseTable = ({ expenseList }) => {
                 <td>{expense.description}</td>
                 <td>{expense.location}</td>
                 <td>{expense.amount}</td>
+                <DeleteButton expenseList={expenseList} expense={expense} />
               </tr>
             );
           })}
