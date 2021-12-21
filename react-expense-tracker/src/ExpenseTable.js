@@ -15,10 +15,10 @@ const ExpenseTable = ({ expenseList }) => {
         </thead>
         <tbody id="table-body">
           <tr>
-            {expenseList.map((expense, idx) => {
+            {expenseList.map((expense) => {
               return (
                 <>
-                  <td key={idx}>{expense.currency}</td>
+                  <td>{expense.currency}</td>
                   {/* <td>{expense.date}</td>
                   <td>{expense.description}</td>
                   <td>{expense.location}</td>
