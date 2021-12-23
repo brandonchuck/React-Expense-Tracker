@@ -1,7 +1,7 @@
 import React from "react";
 import DeleteButton from "./DeleteButton";
 
-const ExpenseTable = ({ expenseList }) => {
+const ExpenseTable = ({ expenseList, saveExpense, getExpenseArray }) => {
   return (
     <div>
       <table className="expense-table">
@@ -23,7 +23,12 @@ const ExpenseTable = ({ expenseList }) => {
                 <td>{expense.description}</td>
                 <td>{expense.location}</td>
                 <td>{expense.amount}</td>
-                <DeleteButton expenseList={expenseList} expense={expense} />
+                <DeleteButton
+                  expense={expense}
+                  expenseList={expenseList}
+                  saveExpense={saveExpense}
+                  getExpenseArray={getExpenseArray}
+                />
               </tr>
             );
           })}

@@ -1,14 +1,23 @@
 import "./App.css";
 import ExpenseTable from "./ExpenseTable";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-function App() {
+const App = () => {
   const [expenseList, setExpenseList] = useState([]);
+
   const [currency, setCurrency] = useState("");
   const [date, setDate] = useState("");
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
   const [amount, setAmount] = useState("");
+
+  // Can I use useEffect as alternative to onLoad???
+  useEffect(() => {
+    let expenseArray = getExpenseArray();
+    expenseArray.forEach((ex) => {
+      setExpenseList([...expenseList, ex]);
+    });
+  }, []);
 
   // set expense object onSubmit
   const expense = {
@@ -20,12 +29,29 @@ function App() {
     amount: amount,
   };
 
+  // adding expense to DOM and saving it to local storage
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    document.querySelector(".expense-form").reset();
-    setExpenseList([...expenseList, expense]);
-    console.log(expenseList);
+    setExpenseList([...expenseList, expense]); // update expenseList for DOM rendering
+    addExpense(expense); // save new expense to local storage
   };
+
+  // update
+  function saveExpense(expenseList) {
+    localStorage.setItem("expenseArray", JSON.stringify(expenseList));
+  }
+
+  // retreive expenseArray from local storage
+  const getExpenseArray = () => {
+    return JSON.parse(localStorage.getItem("expenseArray")) || [];
+  };
+
+  // add new expense to local storage
+  function addExpense(expense) {
+    let expenseArray = getExpenseArray(); // local storage expenseArray
+    expenseArray.push(expense); // push new expense to array
+    saveExpense(expenseArray); // save updated expenseList in local storage
+  }
 
   return (
     <div className="App">
@@ -97,9 +123,13 @@ function App() {
           </form>
         </div>
       </div>
-      <ExpenseTable expenseList={expenseList} />
+      <ExpenseTable
+        expenseList={expenseList}
+        saveExpense={saveExpense}
+        getExpenseArray={getExpenseArray}
+      />
     </div>
   );
-}
+};
 
 export default App;
