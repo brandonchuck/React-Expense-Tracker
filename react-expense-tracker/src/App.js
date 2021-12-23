@@ -17,7 +17,7 @@ const App = () => {
     expenseArray.forEach((ex) => {
       setExpenseList([...expenseList, ex]);
     });
-  });
+  }, []);
 
   // set expense object onSubmit
   const expense = {
