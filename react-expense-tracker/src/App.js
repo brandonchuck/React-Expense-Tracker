@@ -10,7 +10,7 @@ const App = () => {
   const [location, setLocation] = useState("");
   const [amount, setAmount] = useState("");
 
-  // load saved expenses from local storage
+  // load saved expenses from local storage on refresh
   useEffect(() => {
     let expenseArray = getExpenseArray();
     setExpenseList(expenseArray);

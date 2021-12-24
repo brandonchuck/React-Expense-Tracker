@@ -1,5 +1,4 @@
 import React from "react";
-import DeleteButton from "./DeleteButton";
 
 const ExpenseTable = ({ expenseList, saveExpense, getExpenseArray }) => {
   function formatAmount(amount) {
@@ -44,11 +43,21 @@ const ExpenseTable = ({ expenseList, saveExpense, getExpenseArray }) => {
                 <td>{expense.description}</td>
                 <td>{expense.location}</td>
                 <td>{formatAmount(expense.amount)}</td>
-                <DeleteButton
-                  expense={expense}
-                  saveExpense={saveExpense}
-                  getExpenseArray={getExpenseArray}
-                />
+                <td>
+                  <button
+                    className="delete-button"
+                    onClick={(e) => {
+                      e.target.parentElement.parentElement.remove();
+                      let expenseArray = getExpenseArray();
+                      expenseArray = expenseArray.filter((exp) => {
+                        return exp.id !== expense.id;
+                      });
+                      saveExpense(expenseArray);
+                    }}
+                  >
+                    X
+                  </button>
+                </td>
               </tr>
             );
           })}
