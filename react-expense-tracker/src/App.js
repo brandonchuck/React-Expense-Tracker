@@ -4,22 +4,18 @@ import React, { useState, useEffect } from "react";
 
 const App = () => {
   const [expenseList, setExpenseList] = useState([]);
-
   const [currency, setCurrency] = useState("");
   const [date, setDate] = useState("");
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
   const [amount, setAmount] = useState("");
 
-  // Can I use useEffect as alternative to onLoad???
+  // load saved expenses from local storage
   useEffect(() => {
     let expenseArray = getExpenseArray();
-    expenseArray.forEach((ex) => {
-      setExpenseList([...expenseList, ex]);
-    });
+    setExpenseList(expenseArray);
   }, []);
 
-  // set expense object onSubmit
   const expense = {
     id: Math.floor(Math.random() * 1000),
     currency: currency,
@@ -29,28 +25,24 @@ const App = () => {
     amount: amount,
   };
 
-  // adding expense to DOM and saving it to local storage
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    setExpenseList([...expenseList, expense]); // update expenseList for DOM rendering
-    addExpense(expense); // save new expense to local storage
+    setExpenseList([...expenseList, expense]);
+    addExpense(expense);
   };
 
-  // update
+  function getExpenseArray() {
+    return JSON.parse(localStorage.getItem("expenseArray")) || [];
+  }
+
   function saveExpense(expenseList) {
     localStorage.setItem("expenseArray", JSON.stringify(expenseList));
   }
 
-  // retreive expenseArray from local storage
-  const getExpenseArray = () => {
-    return JSON.parse(localStorage.getItem("expenseArray")) || [];
-  };
-
-  // add new expense to local storage
   function addExpense(expense) {
-    let expenseArray = getExpenseArray(); // local storage expenseArray
-    expenseArray.push(expense); // push new expense to array
-    saveExpense(expenseArray); // save updated expenseList in local storage
+    let expenseArray = getExpenseArray();
+    expenseArray.push(expense);
+    saveExpense(expenseArray);
   }
 
   return (
@@ -72,6 +64,7 @@ const App = () => {
               <option value="credit">Credit Card</option>
               <option value="crypto">Cryptocurrency</option>
               <option value="check">Check</option>
+              <option value="other">Other</option>
             </select>
             <br />
 
