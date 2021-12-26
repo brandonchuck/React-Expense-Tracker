@@ -10,7 +10,6 @@ const App = () => {
   const [location, setLocation] = useState("");
   const [amount, setAmount] = useState("");
 
-  // load saved expenses from local storage on refresh
   useEffect(() => {
     let expenseArray = getExpenseArray();
     setExpenseList(expenseArray);
@@ -47,72 +46,112 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1>React Expense Tracker</h1>
+      <h1 id="title">React Expense Tracker</h1>
       <div>
-        <div className="form-container">
-          <form className="expense-form" onSubmit={handleFormSubmit}>
-            <label htmlFor="currency">Currency: </label>
-            <select
-              onChange={(e) => setCurrency(e.target.value)}
-              value={currency}
-              type="text"
-              name="currency"
-              id="currency"
-              required
-            >
-              <option value="cash">Cash</option>
-              <option value="credit">Credit Card</option>
-              <option value="crypto">Cryptocurrency</option>
-              <option value="check">Check</option>
-              <option value="other">Other</option>
-            </select>
-            <br />
+        <div className="container">
+          <form className="form" onSubmit={handleFormSubmit}>
+            <div className="form-group row">
+              <div className="col-sm-6">
+                <label className="col-form-label" htmlFor="currency">
+                  Currency:
+                </label>
+                <div>
+                  <select
+                    className="form-control"
+                    onChange={(e) => setCurrency(e.target.value)}
+                    value={currency}
+                    placeholder="Choose a currency"
+                    type="text"
+                    name="currency"
+                    id="currency"
+                    required
+                  >
+                    <option value="cash">Cash</option>
+                    <option value="credit">Credit Card</option>
+                    <option value="crypto">Cryptocurrency</option>
+                    <option value="check">Check</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+              </div>
 
-            <label htmlFor="date">Date: </label>
-            <input
-              onChange={(e) => setDate(e.target.value)}
-              value={date}
-              name="date"
-              type="date"
-              id="date"
-              required
-            />
-            <br />
+              <div className="col-sm-6">
+                <label className="col-form-label" htmlFor="date">
+                  Date:
+                </label>
 
-            <label htmlFor="description">Description: </label>
-            <input
-              onChange={(e) => setDescription(e.target.value)}
-              value={description}
-              type="text"
-              name="description"
-              id="description"
-              required
-            />
-            <br />
+                <div>
+                  <input
+                    className="form-control"
+                    onChange={(e) => setDate(e.target.value)}
+                    value={date}
+                    name="date"
+                    type="date"
+                    id="date"
+                    required
+                  />
+                </div>
+              </div>
 
-            <label htmlFor="location">Location: </label>
-            <input
-              onChange={(e) => setLocation(e.target.value)}
-              value={location}
-              name="location"
-              type="text"
-              id="location"
-              required
-            />
-            <br />
+              <div className="col-sm-6">
+                <label className="col-form-label" htmlFor="description">
+                  Description:
+                </label>
 
-            <label htmlFor="amount">Amount: </label>
-            <input
-              onChange={(e) => setAmount(e.target.value)}
-              value={amount}
-              name="amount"
-              type="number"
-              step="0.2"
-              id="amount"
-              required
-            />
-            <br />
-            <input value="Add Expense" type="submit" />
+                <input
+                  className="form-control"
+                  onChange={(e) => setDescription(e.target.value)}
+                  value={description}
+                  placeholder="For what?"
+                  type="text"
+                  name="description"
+                  id="description"
+                  required
+                />
+              </div>
+
+              <div className="col-sm-6">
+                <label className="col-form-label" htmlFor="location">
+                  Location:
+                </label>
+                <input
+                  className="form-control"
+                  onChange={(e) => setLocation(e.target.value)}
+                  value={location}
+                  placeholder="Where?"
+                  name="location"
+                  type="text"
+                  id="location"
+                  required
+                />
+              </div>
+
+              <div className="col-sm-6">
+                <label className="col-form-label" htmlFor="amount">
+                  Amount:
+                </label>
+                <input
+                  className="form-control"
+                  onChange={(e) => setAmount(e.target.value)}
+                  value={amount}
+                  placeholder="How much?"
+                  name="amount"
+                  type="number"
+                  step="0.2"
+                  id="amount"
+                  required
+                />
+              </div>
+
+              <div className="col-sm-12">
+                <input
+                  className="form-control"
+                  value="Add Expense"
+                  type="submit"
+                  id="add-expense-btn"
+                />
+              </div>
+            </div>
           </form>
         </div>
       </div>

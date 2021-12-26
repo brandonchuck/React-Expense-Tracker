@@ -8,13 +8,13 @@ const ExpenseTable = ({ expenseList, saveExpense, getExpenseArray }) => {
   function formatCurrency(currency) {
     switch (currency) {
       case "cash":
-        return <i class="bi bi-cash-coin"></i>;
+        return <i className="bi bi-cash-coin"></i>;
       case "credit":
-        return <i class="bi bi-credit-card-2-back"></i>;
+        return <i className="bi bi-credit-card-2-back"></i>;
       case "crypto":
-        return <i class="bi bi-currency-bitcoin"></i>;
+        return <i className="bi bi-currency-bitcoin"></i>;
       case "check":
-        return <i class="bi bi-card-heading"></i>;
+        return <i className="bi bi-card-heading"></i>;
       case "Other":
         return "Other";
       default:
@@ -24,17 +24,18 @@ const ExpenseTable = ({ expenseList, saveExpense, getExpenseArray }) => {
 
   return (
     <div>
-      <table className="expense-table">
+      <table className="table table-striped">
         <thead>
           <tr>
-            <td className="header">Currency</td>
-            <td className="header">Date</td>
-            <td className="header">Description</td>
-            <td className="header">Location</td>
-            <td className="header">Amount</td>
+            <th>Currency</th>
+            <th>Date</th>
+            <th>Description</th>
+            <th>Location</th>
+            <th>Amount</th>
+            <th>Remove</th>
           </tr>
         </thead>
-        <tbody id="table-body">
+        <tbody>
           {expenseList.map((expense) => {
             return (
               <tr key={expense.id}>
@@ -43,9 +44,10 @@ const ExpenseTable = ({ expenseList, saveExpense, getExpenseArray }) => {
                 <td>{expense.description}</td>
                 <td>{expense.location}</td>
                 <td>{formatAmount(expense.amount)}</td>
-                <td>
+                <td id="delete-btn-cell">
                   <button
-                    className="delete-button"
+                    className="button btn-danger"
+                    id="delete-btn"
                     onClick={(e) => {
                       e.target.parentElement.parentElement.remove();
                       let expenseArray = getExpenseArray();
@@ -55,7 +57,7 @@ const ExpenseTable = ({ expenseList, saveExpense, getExpenseArray }) => {
                       saveExpense(expenseArray);
                     }}
                   >
-                    X
+                    &times;
                   </button>
                 </td>
               </tr>
