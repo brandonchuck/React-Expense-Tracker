@@ -7,7 +7,7 @@
 
 # Website
 
-- See it [here](https://brandonchuck.github.io/VanillaJS-Expense-Tracker/) on Heroku! 
+- See it [here](https://reactjs-expense-tracker.herokuapp.com/) on Heroku! 
 
 # Preview
 
