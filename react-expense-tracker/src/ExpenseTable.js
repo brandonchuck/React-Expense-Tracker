@@ -15,7 +15,7 @@ const ExpenseTable = ({ expenseList, saveExpense, getExpenseArray }) => {
         return <i className="bi bi-currency-bitcoin"></i>;
       case "check":
         return <i className="bi bi-card-heading"></i>;
-      case "Other":
+      case "other":
         return "Other";
       default:
         return null;
@@ -23,7 +23,7 @@ const ExpenseTable = ({ expenseList, saveExpense, getExpenseArray }) => {
   }
 
   return (
-    <div>
+    <div className="table-container">
       <table className="table table-striped">
         <thead>
           <tr>
@@ -32,7 +32,7 @@ const ExpenseTable = ({ expenseList, saveExpense, getExpenseArray }) => {
             <th>Description</th>
             <th>Location</th>
             <th>Amount</th>
-            <th>Remove</th>
+            <th id="remove-header">Remove</th>
           </tr>
         </thead>
         <tbody>

@@ -60,12 +60,12 @@ const App = () => {
                     className="form-control"
                     onChange={(e) => setCurrency(e.target.value)}
                     value={currency}
-                    placeholder="Choose a currency"
                     type="text"
                     name="currency"
                     id="currency"
                     required
                   >
+                    <option value="">Select Currency</option>
                     <option value="cash">Cash</option>
                     <option value="credit">Credit Card</option>
                     <option value="crypto">Cryptocurrency</option>
@@ -153,13 +153,13 @@ const App = () => {
               </div>
             </div>
           </form>
+          <ExpenseTable
+            expenseList={expenseList}
+            saveExpense={saveExpense}
+            getExpenseArray={getExpenseArray}
+          />
         </div>
       </div>
-      <ExpenseTable
-        expenseList={expenseList}
-        saveExpense={saveExpense}
-        getExpenseArray={getExpenseArray}
-      />
     </div>
   );
 };
