@@ -1,5 +1,8 @@
+body {
+  background-color: rgb(155, 155, 155);
+}
 .App {
-  text-align: center;
+  font-family: monospace;
 }
 
 .App-logo {
@@ -35,4 +38,48 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.form {
+  background-color: rgb(85, 85, 85);
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 40px;
+  font-size: 16pt;
+  color: whitesmoke;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+}
+
+table {
+  background-color: whitesmoke;
+  border-radius: 5px;
+  font-size: 16pt;
+  text-align: center;
+}
+
+#title {
+  text-align: center;
+  padding-top: 50px;
+  padding-bottom: 20px;
+  font-weight: bold;
+  font-size: 40pt;
+}
+
+#add-expense-btn {
+  margin-top: 15px;
+  font-size: 16pt;
+  font-weight: bold;
+  color: black;
+  background-color: #61dafb;
+  border-style: none;
+}
+
+#remove-header {
+  color: rgb(235, 59, 59);
+  text-decoration: underline;
+}
+
+#delete-btn {
+  border-radius: 5px;
 }
