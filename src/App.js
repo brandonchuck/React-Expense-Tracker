@@ -27,21 +27,21 @@ const App = () => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     setExpenseList([...expenseList, expense]);
-    addExpense(expense);
+    addNewExpenseToLocalStorage(expense);
   };
 
   function getExpenseArray() {
     return JSON.parse(localStorage.getItem("expenseArray")) || [];
   }
 
-  function saveExpense(expenseList) {
+  function saveExpensesToLocalStorage(expenseList) {
     localStorage.setItem("expenseArray", JSON.stringify(expenseList));
   }
 
-  function addExpense(expense) {
+  function addNewExpenseToLocalStorage(expense) {
     let expenseArray = getExpenseArray();
     expenseArray.push(expense);
-    saveExpense(expenseArray);
+    saveExpensesToLocalStorage(expenseArray);
   }
 
   return (
@@ -155,8 +155,9 @@ const App = () => {
           </form>
           <ExpenseTable
             expenseList={expenseList}
-            saveExpense={saveExpense}
+            saveExpense={saveExpensesToLocalStorage}
             getExpenseArray={getExpenseArray}
+            setExpenseList={setExpenseList}
           />
         </div>
       </div>
