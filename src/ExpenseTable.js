@@ -1,6 +1,11 @@
 import React from "react";
 
-const ExpenseTable = ({ expenseList, saveExpense, getExpenseArray }) => {
+const ExpenseTable = ({
+  expenseList,
+  setExpenseList,
+  saveExpense,
+  getExpenseArray,
+}) => {
   function formatAmount(amount) {
     return `$${amount}`;
   }
@@ -48,13 +53,21 @@ const ExpenseTable = ({ expenseList, saveExpense, getExpenseArray }) => {
                   <button
                     className="button btn-danger"
                     id="delete-btn"
-                    onClick={(e) => {
-                      e.target.parentElement.parentElement.remove();
+                    onClick={() => {
+                      // remove expense row from table
+                      setExpenseList(
+                        expenseList.filter((exp) => {
+                          return exp.id !== expense.id;
+                        })
+                      );
+
+                      // remove from local storage
                       let expenseArray = getExpenseArray();
-                      expenseArray = expenseArray.filter((exp) => {
-                        return exp.id !== expense.id;
-                      });
-                      saveExpense(expenseArray);
+                      saveExpense(
+                        expenseArray.filter((exp) => {
+                          return exp.id !== expense.id;
+                        })
+                      );
                     }}
                   >
                     &times;
